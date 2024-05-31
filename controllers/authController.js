@@ -1,12 +1,13 @@
-const User = require("../models/user");
+const { User } = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { AppError } = require("../utils/errorHandler");
+const { jwToken } = require("../utils/jwt");
 
-const register = async (req, res, next) => {
-  const { username, email, password, confirmPassword } = req.body;
+const signup = async (req, res, next) => {
+  const { name, email, password, confirmPassword } = req.body;
 
-  if (!username || !email || !password || !confirmPassword) {
+  if (!name || !email || !password || !confirmPassword) {
     return next(new AppError("All fields are required", 400));
   }
 
@@ -23,26 +24,20 @@ const register = async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    user = new User({ username, email, password: hashedPassword });
+    user = new User({ name, email, password: hashedPassword });
     await user.save();
 
-    const payload = {
-      user: {
-        id: user.id,
-      },
-    };
-
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "30min",
-    });
+    const payload = { user: { id: user.id } };
+    const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: "30min" });
 
     res.status(201).json({ token });
   } catch (err) {
+    console.error("Error during registration:", err);
     next(new AppError("Server error", 500));
   }
 };
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     let user = await User.findOne({ email });
@@ -61,7 +56,7 @@ const login = async (req, res) => {
       },
     };
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    const token = jwt.sign(payload, process.env.JWT_KEY, {
       expiresIn: "30min",
     });
 
@@ -72,4 +67,4 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+module.exports = { signup, login };
