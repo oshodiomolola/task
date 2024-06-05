@@ -88,19 +88,19 @@ const UserSchema = new Schema({
 // Create a password validation schema
 const passwordSchema = new passwordValidator();
 passwordSchema
-  .is().min(10)                                    // Minimum length 10
-  .has().uppercase()                               // Must have uppercase letters
-  .has().lowercase()                               // Must have lowercase letters
-  .has().digits()                                  // Must have digits
-  .has().symbols()                                 // Must have symbols
-  .is().not().oneOf(['Passw0rd', 'Password123']);  // Blacklist these values
+  .is().min(10)                                    
+  .has().uppercase()                               
+  .has().lowercase()                               
+  .has().digits()                                  
+  .has().symbols()                                 
+  .is().not().oneOf(['Passw0rd', 'Password123']);  
 
 UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();
   }
 
-  // Validate the password
+  
   if (!passwordSchema.validate(this.password)) {
     const error = new Error("Password does not meet security requirements.");
     logger.error("Password validation failed", { email: this.email });
@@ -132,8 +132,7 @@ UserSchema.methods.comparePassword = async function (password) {
     logger.info('Password comparison result', { inputPassword: password, storedHash: this.password, result: isMatch });
 
     if (!isMatch) {
-      // Manually hash the input password and compare with the stored hash for additional debugging
-      const salt = this.password.slice(0, 29); // Extract the salt from the stored hash
+      const salt = this.password.slice(0, 29);
       const manualHash = await bcrypt.hash(password, salt);
       logger.info('Manual hash result', { inputPassword: password, manualHash: manualHash, storedHash: this.password });
     }
@@ -148,7 +147,7 @@ UserSchema.methods.comparePassword = async function (password) {
 const User = mongoose.model("User", UserSchema);
 module.exports = { User };
 
-// Manual hash verification for debugging
+
 const inputPassword = 'rebelle1234567890';
 const storedHash = '$2b$10$vF4./Nne7lotA3XH/PP51eggaz4cSo/S9xmdw6oj9ryHFxPgZ4i4i';
 

@@ -4,6 +4,7 @@ const bcryptjs = require("bcryptjs");
 const { AppError } = require("../utils/errorHandler");
 const { jwToken } = require("../utils/jwt");
 
+
 const signup = async (req, res, next) => {
   const { name, email, password, confirmPassword } = req.body;
 
@@ -21,15 +22,12 @@ const signup = async (req, res, next) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    const salt = await bcryptjs.genSalt(10);
-    const hashedPassword = await bcryptjs.hash(password, salt);
-
-    user = new User({ name, email, password: hashedPassword });
+    user = new User({ name, email, password: password });
     await user.save();
 
     const payload = { user: { id: user.id } };
-    const token = jwt.sign(payload, process.env.JWT_KEY, {
-      expiresIn: "30min",
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRATION,
     });
 
     res.status(201).json({ token });
@@ -49,26 +47,29 @@ const login = async (req, res, next) => {
       return next(new AppError("Invalid email", 400));
     }
     console.log(user);
-    const isMatch = await bcryptjs.compare(password, user.password);
-    console.log(isMatch);
-    console.log("PASSWORD :=>", user.password);
-    console.log("Password comparison result:", isMatch);
-    if (!isMatch) {
-      console.log("invalid password");
-      return next(new AppError("Invalid password", 400));
-    }
+    bcryptjs.compare(password, user.password).then(function (match) {
+      console.log(res);
+      console.log("PASSWORD :=>", user.password, password);
+      console.log("Password comparison result:", match);
+      if (!match) {
+        console.log("invalid password");
+        return next(new AppError("Invalid password", 400));
+      }
 
-    const payload = {
-      user: {
-        id: user.id,
-      },
-    };
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
 
-    const token = jwt.sign(payload, process.env.JWT_KEY, {
-      expiresIn: "30min",
-    });
+      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: "30min",
+      });
 
-    res.json({ token });
+      res.json({ token });
+  }).catch(err => {
+    throw new Error(err);
+  });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
