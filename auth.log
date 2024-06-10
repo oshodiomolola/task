@@ -496,3 +496,15 @@
 {"inputPassword":"rebelle1234567890","level":"error","manualHash":"$2b$10$vF4./Nne7lotA3XH/PP51even3SG9cRruQutM9s65wgoTbjG53aqS","message":"Hash mismatch detected. Further  estigation required.","storedHash":"$2b$10$vF4./Nne7lotA3XH/PP51eggaz4cSo/S9xmdw6oj9ryHFxPgZ4i4i"}
 {"email":"james@gmail.com","level":"info","message":"Generated Salt","salt":"$2b$10$Pbj4eoQy0hQYEfZehr.UlO"}
 {"email":"james@gmail.com","hashedPassword":"$2b$10$Pbj4eoQy0hQYEfZehr.UlOGCU5I3J8Tb9eGT15EpgHpI89se3i3vu","level":"info","message":"Hashed Password before save"}
+{"hashedPassword":"$2b$10$IVLbBvoN3GrnI2aP0I8OTu0voINGuDTUqVTE4cxRx7x3ipcdFeB26","level":"info","message":"Generated Salt and Hash","salt":"$2b$10$IVLbBvoN3GrnI2aP0I8OTu"}
+{"inputPassword":"rebelle1234567890","level":"info","message":"Password comparison result","result":false,"storedHash":"$2b$10$vF4./Nne7lotA3XH/PP51eggaz4cSo/S9xmdw6oj9ryHFxPgZ4i4i"}
+{"inputPassword":"rebelle1234567890","level":"info","manualHash":"$2b$10$vF4./Nne7lotA3XH/PP51even3SG9cRruQutM9s65wgoTbjG53aqS","message":"Manual hash result","storedHash":"$2b$10$vF4./Nne7lotA3XH/PP51eggaz4cSo/S9xmdw6oj9ryHFxPgZ4i4i"}
+{"inputPassword":"rebelle1234567890","level":"error","manualHash":"$2b$10$vF4./Nne7lotA3XH/PP51even3SG9cRruQutM9s65wgoTbjG53aqS","message":"Hash mismatch detected. Further  estigation required.","storedHash":"$2b$10$vF4./Nne7lotA3XH/PP51eggaz4cSo/S9xmdw6oj9ryHFxPgZ4i4i"}
+{"hashedPassword":"$2b$10$GuBA/VLGT4VmGXE7hgIZMu7LmCLkh.yD3a8EULR64C1V8rhp9oqkm","level":"info","message":"Generated Salt and Hash","salt":"$2b$10$GuBA/VLGT4VmGXE7hgIZMu"}
+{"inputPassword":"rebelle1234567890","level":"info","message":"Password comparison result","result":false,"storedHash":"$2b$10$vF4./Nne7lotA3XH/PP51eggaz4cSo/S9xmdw6oj9ryHFxPgZ4i4i"}
+{"inputPassword":"rebelle1234567890","level":"info","manualHash":"$2b$10$vF4./Nne7lotA3XH/PP51even3SG9cRruQutM9s65wgoTbjG53aqS","message":"Manual hash result","storedHash":"$2b$10$vF4./Nne7lotA3XH/PP51eggaz4cSo/S9xmdw6oj9ryHFxPgZ4i4i"}
+{"inputPassword":"rebelle1234567890","level":"error","manualHash":"$2b$10$vF4./Nne7lotA3XH/PP51even3SG9cRruQutM9s65wgoTbjG53aqS","message":"Hash mismatch detected. Further  estigation required.","storedHash":"$2b$10$vF4./Nne7lotA3XH/PP51eggaz4cSo/S9xmdw6oj9ryHFxPgZ4i4i"}
+{"hashedPassword":"$2b$10$GP0UGbQv4s7z82gGP/uli.niPqnvnPC2WkVhGzSbRLq/ZuM3TPhBC","level":"info","message":"Generated Salt and Hash","salt":"$2b$10$GP0UGbQv4s7z82gGP/uli."}
+{"inputPassword":"rebelle1234567890","level":"info","message":"Password comparison result","result":false,"storedHash":"$2b$10$vF4./Nne7lotA3XH/PP51eggaz4cSo/S9xmdw6oj9ryHFxPgZ4i4i"}
+{"inputPassword":"rebelle1234567890","level":"info","manualHash":"$2b$10$vF4./Nne7lotA3XH/PP51even3SG9cRruQutM9s65wgoTbjG53aqS","message":"Manual hash result","storedHash":"$2b$10$vF4./Nne7lotA3XH/PP51eggaz4cSo/S9xmdw6oj9ryHFxPgZ4i4i"}
+{"inputPassword":"rebelle1234567890","level":"error","manualHash":"$2b$10$vF4./Nne7lotA3XH/PP51even3SG9cRruQutM9s65wgoTbjG53aqS","message":"Hash mismatch detected. Further  estigation required.","storedHash":"$2b$10$vF4./Nne7lotA3XH/PP51eggaz4cSo/S9xmdw6oj9ryHFxPgZ4i4i"}
